@@ -38,6 +38,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const IdSearchPage(),
       );
     },
+    MovieDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<MovieDetailsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MovieDetailsPage(
+          key: args.key,
+          movie: args.movie,
+          movieType: args.movieType,
+        ),
+      );
+    },
     NumberSearchRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -126,6 +137,49 @@ class IdSearchRoute extends PageRouteInfo<void> {
   static const String name = 'IdSearchRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MovieDetailsPage]
+class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
+  MovieDetailsRoute({
+    Key? key,
+    required MovieModel movie,
+    required MovieType movieType,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MovieDetailsRoute.name,
+          args: MovieDetailsRouteArgs(
+            key: key,
+            movie: movie,
+            movieType: movieType,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MovieDetailsRoute';
+
+  static const PageInfo<MovieDetailsRouteArgs> page =
+      PageInfo<MovieDetailsRouteArgs>(name);
+}
+
+class MovieDetailsRouteArgs {
+  const MovieDetailsRouteArgs({
+    this.key,
+    required this.movie,
+    required this.movieType,
+  });
+
+  final Key? key;
+
+  final MovieModel movie;
+
+  final MovieType movieType;
+
+  @override
+  String toString() {
+    return 'MovieDetailsRouteArgs{key: $key, movie: $movie, movieType: $movieType}';
+  }
 }
 
 /// generated route for

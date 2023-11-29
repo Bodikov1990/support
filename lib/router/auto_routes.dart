@@ -7,6 +7,7 @@ import 'package:support/src/general_page/data/models/city_model.dart';
 
 import 'package:support/src/general_page/presentation/views/general_page.dart';
 import 'package:support/src/id_search_page/presentation/views/id_search_page.dart';
+import 'package:support/src/movie_details_page.dart/presentation/views/movie_details_page.dart';
 
 import 'package:support/src/number_seacrh_page/presentation/views/number_search_page.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
@@ -43,5 +44,9 @@ class AppRouter extends _$AppRouter {
                 ]),
           ],
         ),
+        AutoRoute(
+            page: MovieDetailsRoute.page,
+            // type: const NoAnimationRouteType(),
+            initial: false),
       ];
 }

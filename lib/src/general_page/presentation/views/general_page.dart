@@ -14,13 +14,13 @@ class NavLink extends StatelessWidget {
   final Function(PageRouteInfo) onSelected;
 
   const NavLink({
-    Key? key,
+    super.key,
     required this.label,
     required this.destination,
     required this.icon,
     required this.isActive,
     required this.onSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

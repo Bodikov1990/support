@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:support/core/utils/constants.dart';
+import 'package:support/router/auto_routes.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
 
 @RoutePage()
@@ -12,10 +13,10 @@ class AllMoviesPage extends StatefulWidget {
   final MovieType movieType;
 
   const AllMoviesPage({
-    Key? key,
+    super.key,
     required this.movies,
     required this.movieType,
-  }) : super(key: key);
+  });
 
   @override
   State<AllMoviesPage> createState() => _AllMoviesPageState();
@@ -35,8 +36,8 @@ class _AllMoviesPageState extends State<AllMoviesPage> {
           var movie = widget.movies[index];
           return InkWell(
             onTap: () {
-              // Действие при нажатии на постер
-              // Например, переход на страницу с деталями фильма
+              AutoRouter.of(context).push(
+                  MovieDetailsRoute(movie: movie, movieType: widget.movieType));
             },
             child: Padding(
               padding: const EdgeInsets.all(4.0),
