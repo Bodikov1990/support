@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:support/core/utils/constants.dart';
 import 'package:support/core/viewmodels/theme_view_model.dart';
-
+import 'package:support/src/all_movies_page/presentation/views/all_moves_page.dart';
 import 'package:support/src/general_page/data/models/city_model.dart';
-import 'package:support/src/movie_page/presentation/views/all_moves_page.dart';
 import 'package:support/src/push_page/presentation/bloc/push_bloc.dart';
 
 @RoutePage()

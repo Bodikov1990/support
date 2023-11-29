@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:support/core/utils/constants.dart';
 import 'package:support/core/utils/no_animation_route.dart';
+import 'package:support/src/all_movies_page/presentation/views/all_moves_page.dart';
 import 'package:support/src/general_page/data/models/city_model.dart';
 
 import 'package:support/src/general_page/presentation/views/general_page.dart';
 import 'package:support/src/id_search_page/presentation/views/id_search_page.dart';
-import 'package:support/src/movie_page/presentation/views/all_moves_page.dart';
 
 import 'package:support/src/number_seacrh_page/presentation/views/number_search_page.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
