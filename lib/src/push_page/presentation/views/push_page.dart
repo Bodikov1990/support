@@ -5,6 +5,7 @@ import 'package:support/core/utils/constants.dart';
 import 'package:support/core/viewmodels/theme_view_model.dart';
 
 import 'package:support/src/general_page/data/models/city_model.dart';
+import 'package:support/src/movie_page/presentation/views/all_moves_page.dart';
 import 'package:support/src/push_page/presentation/bloc/push_bloc.dart';
 
 @RoutePage()
@@ -146,7 +147,11 @@ class _PushPageState extends State<PushPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is PushGetMoviesSuccesState) {
-                  return Center(child: Text("${state.movies.length}"));
+                  return Expanded(
+                    child: AllMoviesPage(
+                        movies: state.movies,
+                        movieType: activeMovieType ?? MovieType.TODAY),
+                  );
                 }
                 return Container();
               },

@@ -16,8 +16,7 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     AllMoviesRoute.name: (routeData) {
-      final args = routeData.argsAs<AllMoviesRouteArgs>(
-          orElse: () => const AllMoviesRouteArgs());
+      final args = routeData.argsAs<AllMoviesRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: AllMoviesPage(
@@ -63,8 +62,8 @@ abstract class _$AppRouter extends RootStackRouter {
 class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
   AllMoviesRoute({
     Key? key,
-    List<MovieModel>? movies,
-    MovieType? movieType,
+    required List<MovieModel> movies,
+    required MovieType movieType,
     List<PageRouteInfo>? children,
   }) : super(
           AllMoviesRoute.name,
@@ -85,15 +84,15 @@ class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
 class AllMoviesRouteArgs {
   const AllMoviesRouteArgs({
     this.key,
-    this.movies,
-    this.movieType,
+    required this.movies,
+    required this.movieType,
   });
 
   final Key? key;
 
-  final List<MovieModel>? movies;
+  final List<MovieModel> movies;
 
-  final MovieType? movieType;
+  final MovieType movieType;
 
   @override
   String toString() {

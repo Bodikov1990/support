@@ -8,7 +8,9 @@ class MovieModel extends MovieEntity {
       required super.code,
       required super.actors,
       required super.description,
-      required super.directors});
+      required super.directors,
+      required super.certification,
+      required super.image});
 
   String genre() {
     var genre = "";
