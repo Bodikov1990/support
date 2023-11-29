@@ -19,9 +19,9 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       actors:
           (json['actors'] as List<dynamic>?)?.map((e) => e as String).toList(),
       certification: json['certification'] as String?,
-      image: json['imageEntity'] == null
+      image: json['image'] == null
           ? null
-          : ImageEntity.fromJson(json['imageEntity'] as Map<String, dynamic>),
+          : ImageEntity.fromJson(json['image'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
@@ -34,5 +34,5 @@ Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
       'directors': instance.directors,
       'actors': instance.actors,
       'certification': instance.certification,
-      'imageEntity': instance.image,
+      'image': instance.image,
     };

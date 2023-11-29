@@ -50,7 +50,7 @@ class _PushPageState extends State<PushPage> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Container(
-                    height: 16,
+                    height: 42,
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     decoration: ShapeDecoration(
                       color: Colors.white,
@@ -96,6 +96,9 @@ class _PushPageState extends State<PushPage> {
         ),
         body: Column(
           children: [
+            const SizedBox(
+              height: 8,
+            ),
             Row(
               children: [
                 createStyledButton(
@@ -137,7 +140,7 @@ class _PushPageState extends State<PushPage> {
               ],
             ),
             const SizedBox(
-              height: 24,
+              height: 8,
             ),
             BlocBuilder<PushBloc, PushState>(
               bloc: _pushBloc,
