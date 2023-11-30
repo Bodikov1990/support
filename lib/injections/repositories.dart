@@ -3,6 +3,9 @@ import 'package:support/router/auto_routes.dart';
 import 'package:support/src/general_page/data/datasource/general_remote_datasource.dart';
 import 'package:support/src/general_page/data/repositories/general_repository_impl.dart';
 import 'package:support/src/general_page/repository/general_repository.dart';
+import 'package:support/src/movie_details_page.dart/data/datasource/movie_details_remote_datasource.dart';
+import 'package:support/src/movie_details_page.dart/data/repositories/movie_details_repository_impl.dart';
+import 'package:support/src/movie_details_page.dart/repository/movie_details_repository.dart';
 import 'package:support/src/push_page/data/datasources/push_remote_datasource.dart';
 import 'package:support/src/push_page/data/repositories/push_repository_impl.dart';
 import 'package:support/src/push_page/repository/push_repository.dart';
@@ -25,4 +28,8 @@ void init() {
   getIt.registerLazySingleton<PushRepository>(() => PushRepositoryImpl());
   getIt.registerLazySingleton<PushRemoteDataSource>(
       () => PushRemoteDataSourceImpl());
+  getIt.registerLazySingleton<MovieDetailsRepository>(
+      () => MovieDetailsRepositoryImpl());
+  getIt.registerLazySingleton<MovieDetailsRemoteDataSource>(
+      () => MovieDetailsRemoteDataSourceImpl());
 }

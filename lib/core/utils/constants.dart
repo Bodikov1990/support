@@ -29,3 +29,6 @@ const String PARAM_START = "start";
 const String PARAM_RELEASE_DATE = "release_date";
 const String PARAM_FORMAT = "format";
 const String newMovies = "new_movies";
+const String movieChannel = "movies_channel";
+const String bigPicture = 'BigPicture';
+const String highPriority = 'High';

@@ -115,8 +115,8 @@ void init() async {
     pushDio.options = options;
     pushDio.httpClientAdapter = IOHttpClientAdapter();
 
-    pushDio.interceptors
-        .add(AppVersionInterceptor(version: 'version=1.0.0-mobile'));
+    // pushDio.interceptors
+    //     .add(AppVersionInterceptor(version: 'version=1.0.0-mobile'));
 
     pushDio.interceptors.add(LogInterceptor(responseBody: true));
 
