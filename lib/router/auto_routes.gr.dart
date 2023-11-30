@@ -21,6 +21,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: AllMoviesPage(
           key: args.key,
+          city: args.city,
           movies: args.movies,
           movieType: args.movieType,
         ),
@@ -44,6 +45,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: MovieDetailsPage(
           key: args.key,
+          city: args.city,
           movie: args.movie,
           movieType: args.movieType,
         ),
@@ -73,6 +75,7 @@ abstract class _$AppRouter extends RootStackRouter {
 class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
   AllMoviesRoute({
     Key? key,
+    required CityModel? city,
     required List<MovieModel> movies,
     required MovieType movieType,
     List<PageRouteInfo>? children,
@@ -80,6 +83,7 @@ class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
           AllMoviesRoute.name,
           args: AllMoviesRouteArgs(
             key: key,
+            city: city,
             movies: movies,
             movieType: movieType,
           ),
@@ -95,11 +99,14 @@ class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
 class AllMoviesRouteArgs {
   const AllMoviesRouteArgs({
     this.key,
+    required this.city,
     required this.movies,
     required this.movieType,
   });
 
   final Key? key;
+
+  final CityModel? city;
 
   final List<MovieModel> movies;
 
@@ -107,7 +114,7 @@ class AllMoviesRouteArgs {
 
   @override
   String toString() {
-    return 'AllMoviesRouteArgs{key: $key, movies: $movies, movieType: $movieType}';
+    return 'AllMoviesRouteArgs{key: $key, city: $city, movies: $movies, movieType: $movieType}';
   }
 }
 
@@ -144,6 +151,7 @@ class IdSearchRoute extends PageRouteInfo<void> {
 class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
   MovieDetailsRoute({
     Key? key,
+    required CityModel? city,
     required MovieModel movie,
     required MovieType movieType,
     List<PageRouteInfo>? children,
@@ -151,6 +159,7 @@ class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
           MovieDetailsRoute.name,
           args: MovieDetailsRouteArgs(
             key: key,
+            city: city,
             movie: movie,
             movieType: movieType,
           ),
@@ -166,11 +175,14 @@ class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
 class MovieDetailsRouteArgs {
   const MovieDetailsRouteArgs({
     this.key,
+    required this.city,
     required this.movie,
     required this.movieType,
   });
 
   final Key? key;
+
+  final CityModel? city;
 
   final MovieModel movie;
 
@@ -178,7 +190,7 @@ class MovieDetailsRouteArgs {
 
   @override
   String toString() {
-    return 'MovieDetailsRouteArgs{key: $key, movie: $movie, movieType: $movieType}';
+    return 'MovieDetailsRouteArgs{key: $key, city: $city, movie: $movie, movieType: $movieType}';
   }
 }
 

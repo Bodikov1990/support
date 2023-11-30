@@ -1,19 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import 'package:support/core/utils/constants.dart';
 import 'package:support/router/auto_routes.dart';
+import 'package:support/src/general_page/data/models/city_model.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
 
 @RoutePage()
 class AllMoviesPage extends StatefulWidget {
+  final CityModel? city;
   final List<MovieModel> movies;
   final MovieType movieType;
 
   const AllMoviesPage({
     super.key,
+    required this.city,
     required this.movies,
     required this.movieType,
   });
@@ -36,8 +39,10 @@ class _AllMoviesPageState extends State<AllMoviesPage> {
           var movie = widget.movies[index];
           return InkWell(
             onTap: () {
-              AutoRouter.of(context).push(
-                  MovieDetailsRoute(movie: movie, movieType: widget.movieType));
+              AutoRouter.of(context).push(MovieDetailsRoute(
+                  city: widget.city,
+                  movie: movie,
+                  movieType: widget.movieType));
             },
             child: Padding(
               padding: const EdgeInsets.all(4.0),

@@ -28,7 +28,9 @@ class PushRepositoryImpl implements PushRepository {
               description: movie.description,
               directors: movie.directors,
               certification: movie.certification,
-              image: movie.image))
+              image: movie.image,
+              duration: movie.duration,
+              releaseDate: movie.releaseDate))
           .toList());
     } on APIExeption catch (e) {
       return Left(APIFailure.fromExeption(e));

@@ -2,17 +2,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:support/core/utils/constants.dart';
 import 'package:support/core/viewmodels/theme_view_model.dart';
+import 'package:support/src/general_page/data/models/city_model.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
 
 @RoutePage()
 class MovieDetailsPage extends StatefulWidget {
+  final CityModel? city;
   final MovieModel movie;
   final MovieType movieType;
   const MovieDetailsPage({
     super.key,
+    required this.city,
     required this.movie,
     required this.movieType,
   });
@@ -35,13 +39,24 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
     }
   }
 
+  String convertMinutesToHoursAndMinutes(int? minutes) {
+    if (minutes == null) {
+      return 'No data';
+    }
+
+    int hours = minutes ~/ 60;
+    int remainingMinutes = minutes % 60;
+    return '$hours час${hours != 1 ? 'а' : ''} $remainingMinutes минут';
+  }
+
   @override
   Widget build(BuildContext context) {
     var width =
         MediaQuery.of(context).size.width / 7; // Adjust the width as needed
     return Scaffold(
       appBar: AppBar(
-        title: Text("Push уведомления - ${_movieType(widget.movieType)}"),
+        title: Text(
+            "Push уведомления • ${_movieType(widget.movieType)} • ${widget.city?.name}"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -98,8 +113,25 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                             fontWeight: FontWeight.w300, fontSize: 16),
                       ),
                       const SizedBox(height: 8),
+                      SizedBox(
+                        width: 600,
+                        child: Text(
+                          "В главных ролях: \n${widget.movie.actor()}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 16),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
                       Text(
-                        "В главных ролях: \n${widget.movie.actor()}",
+                        "Продолжительность: \n${widget.movie.duration} минут (${convertMinutesToHoursAndMinutes(widget.movie.duration)})",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 16),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "Дата релиза: \n${DateFormat(
+                          'dd.MM.yyyy',
+                        ).format(widget.movie.startTimeFromSource)}",
                         style: const TextStyle(
                             fontWeight: FontWeight.w300, fontSize: 16),
                       ),
@@ -192,7 +224,9 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                         ],
                       ),
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            print(widget.city?.name);
+                          },
                           child: const Text(
                             'Отправить уведомление',
                             style: TextStyle(color: Colors.white),

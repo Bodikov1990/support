@@ -10,7 +10,9 @@ class MovieModel extends MovieEntity {
       required super.description,
       required super.directors,
       required super.certification,
-      required super.image});
+      required super.image,
+      required super.duration,
+      required super.releaseDate});
 
   String genre() {
     var genre = "";
@@ -43,5 +45,17 @@ class MovieModel extends MovieEntity {
       });
     }
     return director;
+  }
+
+  DateTime get startTimeFromSource {
+    try {
+      if (releaseDate == null) {
+        return DateTime.fromMicrosecondsSinceEpoch(0);
+      } else {
+        return DateTime.parse(releaseDate?.substring(0, 10) ?? '');
+      }
+    } catch (ignored) {
+      return DateTime.fromMicrosecondsSinceEpoch(0);
+    }
   }
 }

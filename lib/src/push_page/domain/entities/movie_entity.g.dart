@@ -22,6 +22,8 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       image: json['image'] == null
           ? null
           : ImageEntity.fromJson(json['image'] as Map<String, dynamic>),
+      duration: json['duration'] as int?,
+      releaseDate: json['release_date'] as String?,
     );
 
 Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
@@ -34,5 +36,7 @@ Map<String, dynamic> _$MovieEntityToJson(MovieEntity instance) =>
       'directors': instance.directors,
       'actors': instance.actors,
       'certification': instance.certification,
+      'release_date': instance.releaseDate,
+      'duration': instance.duration,
       'image': instance.image,
     };

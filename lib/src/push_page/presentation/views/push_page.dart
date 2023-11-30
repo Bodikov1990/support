@@ -151,6 +151,7 @@ class _PushPageState extends State<PushPage> {
                 } else if (state is PushGetMoviesSuccesState) {
                   return Expanded(
                     child: AllMoviesPage(
+                        city: selectedCity,
                         movies: state.movies,
                         movieType: activeMovieType ?? MovieType.TODAY),
                   );

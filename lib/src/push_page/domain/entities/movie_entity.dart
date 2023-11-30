@@ -19,18 +19,22 @@ class MovieEntity extends Equatable {
   final List<String>? directors;
   final List<String>? actors;
   final String? certification;
+  @JsonKey(name: 'release_date')
+  final String? releaseDate;
+  final int? duration;
   final ImageEntity? image;
-  const MovieEntity({
-    this.id,
-    this.name,
-    this.code,
-    this.description,
-    this.genres,
-    this.directors,
-    this.actors,
-    this.certification,
-    this.image,
-  });
+  const MovieEntity(
+      {this.id,
+      this.name,
+      this.code,
+      this.description,
+      this.genres,
+      this.directors,
+      this.actors,
+      this.certification,
+      this.image,
+      this.duration,
+      this.releaseDate});
 
   @override
   List<Object?> get props => [
