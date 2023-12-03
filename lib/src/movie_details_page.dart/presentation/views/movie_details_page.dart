@@ -204,21 +204,32 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           ),
         ],
       ),
-      child: TextButton(
-          onPressed: () {
-            String title = _titleController.text;
-            String bodyText = _bodyTextController.text;
-            _movieDetailsBloc.add(MovieDetailsSendNotificationEvent(
-                city: state.city,
-                movieModel: state.movieModel,
-                movieType: state.movieType,
-                title: title,
-                bodyText: bodyText));
-          },
-          child: const Text(
-            'Отправить уведомление',
-            style: TextStyle(color: Colors.white),
-          )),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Row(
+          children: [
+            const Icon(
+              Icons.notifications_none_outlined,
+              color: Colors.white,
+            ),
+            TextButton(
+                onPressed: () {
+                  String title = _titleController.text;
+                  String bodyText = _bodyTextController.text;
+                  _movieDetailsBloc.add(MovieDetailsSendNotificationEvent(
+                      city: state.city,
+                      movieModel: state.movieModel,
+                      movieType: state.movieType,
+                      title: title,
+                      bodyText: bodyText));
+                },
+                child: const Text(
+                  'Отправить уведомление',
+                  style: TextStyle(color: Colors.white),
+                )),
+          ],
+        ),
+      ),
     );
   }
 
