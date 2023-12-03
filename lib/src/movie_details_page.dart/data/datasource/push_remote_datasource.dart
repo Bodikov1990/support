@@ -5,11 +5,11 @@ import 'package:support/core/errors/exeptions.dart';
 import 'package:support/injections/dio/push_dio.dart';
 import 'package:support/src/movie_details_page.dart/domain/entities/notification_entity.dart';
 
-abstract class MovieDetailsRemoteDataSource {
+abstract class PushRemoteDataSource {
   Future<void> sendNotification(NotificationEntity notificationEntity);
 }
 
-class MovieDetailsRemoteDataSourceImpl implements MovieDetailsRemoteDataSource {
+class PushRemoteDataSourceImpl implements PushRemoteDataSource {
   final PushDio _pushDio = GetIt.instance<PushDio>();
 
   @override

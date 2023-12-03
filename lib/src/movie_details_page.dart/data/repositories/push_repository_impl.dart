@@ -3,14 +3,14 @@ import 'package:get_it/get_it.dart';
 import 'package:support/core/errors/exeptions.dart';
 import 'package:support/core/errors/failure.dart';
 import 'package:support/core/utils/typedef.dart';
-import 'package:support/src/movie_details_page.dart/data/datasource/movie_details_remote_datasource.dart';
+import 'package:support/src/movie_details_page.dart/data/datasource/push_remote_datasource.dart';
 import 'package:support/src/movie_details_page.dart/data/models/notification_model.dart';
 import 'package:support/src/movie_details_page.dart/domain/entities/notification_entity.dart';
-import 'package:support/src/movie_details_page.dart/repository/movie_details_repository.dart';
+import 'package:support/src/movie_details_page.dart/repository/push_repository.dart';
 
-class MovieDetailsRepositoryImpl implements MovieDetailsRepository {
-  final MovieDetailsRemoteDataSource _detailsRemoteDataSource =
-      GetIt.instance<MovieDetailsRemoteDataSource>();
+class PushRepositoryImpl implements PushRepository {
+  final PushRemoteDataSource _detailsRemoteDataSource =
+      GetIt.instance<PushRemoteDataSource>();
 
   @override
   ResultVoid sendNotification(NotificationModel notificationModel) async {
