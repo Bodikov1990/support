@@ -5,11 +5,12 @@ import 'package:support/core/usecase/usecase.dart';
 import 'package:support/core/utils/constants.dart';
 import 'package:support/core/utils/typedef.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
-import 'package:support/src/push_page/repository/push_repository.dart';
+import 'package:support/src/push_page/repository/all_movies_repository.dart';
 
 class GetMoviesUseCase
     extends UsecaseWithParams<List<MovieModel>, GetMoviesUseCaseParams> {
-  final PushRepository _pushRepository = GetIt.instance<PushRepository>();
+  final AllMoviesRepository _pushRepository =
+      GetIt.instance<AllMoviesRepository>();
 
   @override
   ResultFuture<List<MovieModel>> call(GetMoviesUseCaseParams params) async =>
