@@ -372,14 +372,14 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
   }
 
   _showAlert({required BuildContext context, String? title, String? content}) {
-    final _content = content ?? '';
+    final content0 = content ?? '';
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: title != null
             ? Text(title, style: const TextStyle(fontWeight: FontWeight.w600))
             : null,
-        content: Text(_content),
+        content: Text(content0),
         actions: <Widget>[
           TextButton(
             onPressed: () {
