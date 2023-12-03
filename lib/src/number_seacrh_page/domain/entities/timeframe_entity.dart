@@ -5,8 +5,8 @@ part 'timeframe_entity.g.dart';
 
 @JsonSerializable()
 class TimeframeEntity extends Equatable {
-  final DateTime? start;
-  final DateTime? end;
+  final String? start;
+  final String? end;
 
   const TimeframeEntity({
     this.start,
