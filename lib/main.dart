@@ -8,7 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:support/injections/di.dart' as di;
 import 'package:support/core/utils/i18n.dart';
-import 'package:support/core/viewmodels/theme_view_model.dart';
+
 import 'package:support/router/auto_routes.dart';
 
 final supportedLocales = [
@@ -61,11 +61,12 @@ class _SupportAppState extends State<SupportApp> {
         routerConfig: _appRouter.config(),
         locale: const Locale('ru', ''),
         theme: ThemeData(
+          scaffoldBackgroundColor: Colors.grey[200],
           fontFamily: "Open Sans",
-          // primaryColor: ThemeViewModel().mainRed,
+          // primaryColor: Colors.grey[200],
           // canvasColor: ThemeViewModel().canvasColor,
           // primarySwatch: ThemeViewModel().mainRed,
-          appBarTheme: ThemeViewModel().appBarTheme,
+          // appBarTheme: ThemeViewModel().appBarTheme,
           // textTheme: ThemeViewModel().textTheme,
           // bottomNavigationBarTheme: BottomNavigationBarThemeData(
           //     backgroundColor: ThemeViewModel().bottomBarBackgroundColor,

@@ -31,8 +31,8 @@ class ThemeViewModel extends BaseViewModel {
     return dark ? const Color(0xFF191B27) : mainRed;
   }
 
-  Color get canvasColor {
-    return dark ? const Color(0xFF191B27) : Colors.white;
+  Color? get canvasColor {
+    return dark ? const Color(0xFF191B27) : Colors.grey[200];
   }
 
   Color get grayColor {

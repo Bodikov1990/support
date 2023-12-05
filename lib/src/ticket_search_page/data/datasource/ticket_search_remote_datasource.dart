@@ -6,14 +6,14 @@ import 'package:support/injections/dio/booking_dio.dart';
 import 'package:support/src/ticket_search_page/domain/entities/ticket_entity.dart';
 
 abstract class TicketSearchRemoteDataSource {
-  Future<TicketEntity> getTicket(String? byNumber, String? byId);
+  Future<List<TicketEntity>> getTicket(String? byNumber, String? byId);
 }
 
 class TicketSearchRemoteDataSourceImpl implements TicketSearchRemoteDataSource {
   final _bookingDio = GetIt.instance<BookingDio>();
 
   @override
-  Future<TicketEntity> getTicket(String? byNumber, String? byId) async {
+  Future<List<TicketEntity>> getTicket(String? byNumber, String? byId) async {
     String url = '';
 
     if (byNumber != null) {
@@ -33,8 +33,9 @@ class TicketSearchRemoteDataSourceImpl implements TicketSearchRemoteDataSource {
                 "Exception from TicketSearchRemoteDataSourceImpl",
             statusCode: response.statusCode ?? 0);
       }
-
-      return TicketEntity.fromJson(response.data);
+      return (response.data as List<dynamic>)
+          .map((raw) => TicketEntity.fromJson(raw))
+          .toList();
     } on APIExeption {
       rethrow;
     } catch (e) {

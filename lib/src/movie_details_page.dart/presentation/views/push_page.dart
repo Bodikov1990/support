@@ -82,8 +82,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    var width =
-        MediaQuery.of(context).size.width / 7; // Adjust the width as needed
+    var width = MediaQuery.of(context).size.width / 7;
     return Scaffold(
       appBar: AppBar(
         title: Text(

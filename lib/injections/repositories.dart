@@ -9,6 +9,9 @@ import 'package:support/src/movie_details_page.dart/repository/push_repository.d
 import 'package:support/src/push_page/data/datasources/all_movies_remote_datasource.dart';
 import 'package:support/src/push_page/data/repositories/all_movies_repository_impl.dart';
 import 'package:support/src/push_page/repository/all_movies_repository.dart';
+import 'package:support/src/ticket_search_page/data/datasource/ticket_search_remote_datasource.dart';
+import 'package:support/src/ticket_search_page/data/repositories/ticket_search_repository_impl.dart';
+import 'package:support/src/ticket_search_page/repository/ticket_search_repository.dart';
 import 'package:support/src/user/data/ropsitories/user_repository_impl.dart';
 import 'package:support/src/user/repository/user_repository.dart';
 
@@ -32,4 +35,9 @@ void init() {
   getIt.registerLazySingleton<PushRepository>(() => PushRepositoryImpl());
   getIt.registerLazySingleton<PushRemoteDataSource>(
       () => PushRemoteDataSourceImpl());
+
+  getIt.registerLazySingleton<TicketSearchRepository>(
+      () => TicketSearchRepositoryImpl());
+  getIt.registerLazySingleton<TicketSearchRemoteDataSource>(
+      () => TicketSearchRemoteDataSourceImpl());
 }
