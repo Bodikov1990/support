@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
@@ -26,8 +28,8 @@ class AppVersionInterceptor extends Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     options.headers.putIfAbsent("Accept", () => "application/json; $version");
-    // options.headers
-    //     .putIfAbsent("Platform", () => Platform.isAndroid ? "Android" : "iOS");
+    options.headers
+        .putIfAbsent("Platform", () => Platform.isWindows ? "Android" : "iOS");
     handler.next(options);
   }
 }

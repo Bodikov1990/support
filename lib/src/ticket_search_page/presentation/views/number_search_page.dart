@@ -396,7 +396,7 @@ class _NumberSearchPageState extends State<NumberSearchPage> {
                                                       Text(seat.col ?? "-")),
                                                   DataCell(Text(
                                                       seat.price.toString())),
-                                                  DataCell(Text("-")),
+                                                  const DataCell(Text("-")),
                                                 ],
                                               );
                                             }).toList() ??
