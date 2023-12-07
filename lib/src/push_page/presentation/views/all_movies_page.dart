@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:support/core/utils/constants.dart';
 import 'package:support/core/viewmodels/theme_view_model.dart';
 import 'package:support/src/all_movies_page/presentation/views/all_moves_page.dart';
@@ -9,8 +11,13 @@ import 'package:support/src/push_page/presentation/bloc/push_bloc.dart';
 
 @RoutePage()
 class PushPage extends StatefulWidget {
+  final bool isMobile;
   final List<CityModel> cities;
-  const PushPage({super.key, required this.cities});
+  const PushPage({
+    super.key,
+    required this.isMobile,
+    required this.cities,
+  });
 
   @override
   State<PushPage> createState() => _PushPageState();
@@ -98,45 +105,48 @@ class _PushPageState extends State<PushPage> {
             const SizedBox(
               height: 8,
             ),
-            Row(
-              children: [
-                createStyledButton(
-                    label: "Сегодня в кино",
-                    onTap: () {
-                      setState(() {
-                        activeMovieType = MovieType.TODAY;
-                      });
-                      _pushBloc.add(PushGetMoviesEvent(
-                          cityId: selectedCity?.id ?? '',
-                          cities: widget.cities,
-                          movieType: MovieType.TODAY));
-                    },
-                    isActive: activeMovieType == MovieType.TODAY),
-                createStyledButton(
-                    label: 'Скоро',
-                    onTap: () {
-                      setState(() {
-                        activeMovieType = MovieType.SOON;
-                      });
-                      _pushBloc.add(PushGetMoviesEvent(
-                          cityId: selectedCity?.id ?? '',
-                          cities: widget.cities,
-                          movieType: MovieType.SOON));
-                    },
-                    isActive: activeMovieType == MovieType.SOON),
-                createStyledButton(
-                    label: 'Предпродажа',
-                    onTap: () {
-                      setState(() {
-                        activeMovieType = MovieType.PRE_SALE;
-                      });
-                      _pushBloc.add(PushGetMoviesEvent(
-                          cityId: selectedCity?.id ?? '',
-                          cities: widget.cities,
-                          movieType: MovieType.PRE_SALE));
-                    },
-                    isActive: activeMovieType == MovieType.PRE_SALE),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  createStyledButton(
+                      label: "Сегодня в кино",
+                      onTap: () {
+                        setState(() {
+                          activeMovieType = MovieType.TODAY;
+                        });
+                        _pushBloc.add(PushGetMoviesEvent(
+                            cityId: selectedCity?.id ?? '',
+                            cities: widget.cities,
+                            movieType: MovieType.TODAY));
+                      },
+                      isActive: activeMovieType == MovieType.TODAY),
+                  createStyledButton(
+                      label: 'Скоро',
+                      onTap: () {
+                        setState(() {
+                          activeMovieType = MovieType.SOON;
+                        });
+                        _pushBloc.add(PushGetMoviesEvent(
+                            cityId: selectedCity?.id ?? '',
+                            cities: widget.cities,
+                            movieType: MovieType.SOON));
+                      },
+                      isActive: activeMovieType == MovieType.SOON),
+                  createStyledButton(
+                      label: 'Предпродажа',
+                      onTap: () {
+                        setState(() {
+                          activeMovieType = MovieType.PRE_SALE;
+                        });
+                        _pushBloc.add(PushGetMoviesEvent(
+                            cityId: selectedCity?.id ?? '',
+                            cities: widget.cities,
+                            movieType: MovieType.PRE_SALE));
+                      },
+                      isActive: activeMovieType == MovieType.PRE_SALE),
+                ],
+              ),
             ),
             const SizedBox(
               height: 8,
@@ -151,6 +161,7 @@ class _PushPageState extends State<PushPage> {
                 } else if (state is PushGetMoviesSuccesState) {
                   return Expanded(
                     child: AllMoviesPage(
+                        isMobile: widget.isMobile,
                         city: selectedCity,
                         movies: state.movies,
                         movieType: activeMovieType ?? MovieType.TODAY),

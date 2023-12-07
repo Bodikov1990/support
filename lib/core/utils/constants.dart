@@ -213,3 +213,7 @@ const String newMovies = "new_movies";
 const String movieChannel = "movies_channel";
 const String bigPicture = 'BigPicture';
 const String highPriority = 'High';
+const String idTitle = 'Поиск по Id';
+const String numberTitle = 'Поиск по брони';
+const String numberlabel = 'Введите номер брони';
+const String idlabel = 'Введите id';

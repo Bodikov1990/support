@@ -21,6 +21,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: AllMoviesPage(
           key: args.key,
+          isMobile: args.isMobile,
           city: args.city,
           movies: args.movies,
           movieType: args.movieType,
@@ -45,6 +46,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: MovieDetailsPage(
           key: args.key,
+          isMobile: args.isMobile,
           city: args.city,
           movie: args.movie,
           movieType: args.movieType,
@@ -52,9 +54,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     NumberSearchRoute.name: (routeData) {
+      final args = routeData.argsAs<NumberSearchRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const NumberSearchPage(),
+        child: NumberSearchPage(
+          key: args.key,
+          isMobile: args.isMobile,
+        ),
       );
     },
     PushRoute.name: (routeData) {
@@ -63,6 +69,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: PushPage(
           key: args.key,
+          isMobile: args.isMobile,
           cities: args.cities,
         ),
       );
@@ -75,6 +82,7 @@ abstract class _$AppRouter extends RootStackRouter {
 class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
   AllMoviesRoute({
     Key? key,
+    required bool isMobile,
     required CityModel? city,
     required List<MovieModel> movies,
     required MovieType movieType,
@@ -83,6 +91,7 @@ class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
           AllMoviesRoute.name,
           args: AllMoviesRouteArgs(
             key: key,
+            isMobile: isMobile,
             city: city,
             movies: movies,
             movieType: movieType,
@@ -99,12 +108,15 @@ class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
 class AllMoviesRouteArgs {
   const AllMoviesRouteArgs({
     this.key,
+    required this.isMobile,
     required this.city,
     required this.movies,
     required this.movieType,
   });
 
   final Key? key;
+
+  final bool isMobile;
 
   final CityModel? city;
 
@@ -114,7 +126,7 @@ class AllMoviesRouteArgs {
 
   @override
   String toString() {
-    return 'AllMoviesRouteArgs{key: $key, city: $city, movies: $movies, movieType: $movieType}';
+    return 'AllMoviesRouteArgs{key: $key, isMobile: $isMobile, city: $city, movies: $movies, movieType: $movieType}';
   }
 }
 
@@ -151,6 +163,7 @@ class IdSearchRoute extends PageRouteInfo<void> {
 class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
   MovieDetailsRoute({
     Key? key,
+    required bool isMobile,
     required CityModel? city,
     required MovieModel movie,
     required MovieType movieType,
@@ -159,6 +172,7 @@ class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
           MovieDetailsRoute.name,
           args: MovieDetailsRouteArgs(
             key: key,
+            isMobile: isMobile,
             city: city,
             movie: movie,
             movieType: movieType,
@@ -175,12 +189,15 @@ class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
 class MovieDetailsRouteArgs {
   const MovieDetailsRouteArgs({
     this.key,
+    required this.isMobile,
     required this.city,
     required this.movie,
     required this.movieType,
   });
 
   final Key? key;
+
+  final bool isMobile;
 
   final CityModel? city;
 
@@ -190,22 +207,46 @@ class MovieDetailsRouteArgs {
 
   @override
   String toString() {
-    return 'MovieDetailsRouteArgs{key: $key, city: $city, movie: $movie, movieType: $movieType}';
+    return 'MovieDetailsRouteArgs{key: $key, isMobile: $isMobile, city: $city, movie: $movie, movieType: $movieType}';
   }
 }
 
 /// generated route for
 /// [NumberSearchPage]
-class NumberSearchRoute extends PageRouteInfo<void> {
-  const NumberSearchRoute({List<PageRouteInfo>? children})
-      : super(
+class NumberSearchRoute extends PageRouteInfo<NumberSearchRouteArgs> {
+  NumberSearchRoute({
+    Key? key,
+    required bool isMobile,
+    List<PageRouteInfo>? children,
+  }) : super(
           NumberSearchRoute.name,
+          args: NumberSearchRouteArgs(
+            key: key,
+            isMobile: isMobile,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'NumberSearchRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<NumberSearchRouteArgs> page =
+      PageInfo<NumberSearchRouteArgs>(name);
+}
+
+class NumberSearchRouteArgs {
+  const NumberSearchRouteArgs({
+    this.key,
+    required this.isMobile,
+  });
+
+  final Key? key;
+
+  final bool isMobile;
+
+  @override
+  String toString() {
+    return 'NumberSearchRouteArgs{key: $key, isMobile: $isMobile}';
+  }
 }
 
 /// generated route for
@@ -213,12 +254,14 @@ class NumberSearchRoute extends PageRouteInfo<void> {
 class PushRoute extends PageRouteInfo<PushRouteArgs> {
   PushRoute({
     Key? key,
+    required bool isMobile,
     required List<CityModel> cities,
     List<PageRouteInfo>? children,
   }) : super(
           PushRoute.name,
           args: PushRouteArgs(
             key: key,
+            isMobile: isMobile,
             cities: cities,
           ),
           initialChildren: children,
@@ -232,15 +275,18 @@ class PushRoute extends PageRouteInfo<PushRouteArgs> {
 class PushRouteArgs {
   const PushRouteArgs({
     this.key,
+    required this.isMobile,
     required this.cities,
   });
 
   final Key? key;
 
+  final bool isMobile;
+
   final List<CityModel> cities;
 
   @override
   String toString() {
-    return 'PushRouteArgs{key: $key, cities: $cities}';
+    return 'PushRouteArgs{key: $key, isMobile: $isMobile, cities: $cities}';
   }
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,13 @@ import 'package:support/src/push_page/data/models/movie_model.dart';
 
 @RoutePage()
 class MovieDetailsPage extends StatefulWidget {
+  final bool isMobile;
   final CityModel? city;
   final MovieModel movie;
   final MovieType movieType;
   const MovieDetailsPage({
     super.key,
+    required this.isMobile,
     required this.city,
     required this.movie,
     required this.movieType,
@@ -80,42 +83,63 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
     return '$hours час${hours != 1 ? 'а' : ''} $remainingMinutes минут';
   }
 
+  double _width() {
+    if (widget.isMobile) {
+      return MediaQuery.of(context).size.width / 3.5;
+    }
+    return MediaQuery.of(context).size.width / 7;
+  }
+
+  Widget _isVertical(
+      MovieDetailsGetSuccessState state, double width, BuildContext context) {
+    if (widget.isMobile) {
+      return _buildVerticalPageContent(state, width, context);
+    }
+
+    return _buildPageContent(state, width, context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width / 7;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            "Push уведомления • ${_movieType(widget.movieType)} • ${widget.city?.name}"),
-      ),
-      body: BlocListener<MovieDetailsBloc, MovieDetailsState>(
+    var width = _width();
+    return BlocListener<MovieDetailsBloc, MovieDetailsState>(
+      bloc: _movieDetailsBloc,
+      listener: (context, state) {
+        if (state is MovieDetailsSendNotificationErrorState) {
+          _fetchDetails();
+          _showAlert(
+              context: context, title: state.title, content: state.content);
+        } else if (state is MovieDetailsSendNotificationSuccessState) {
+          _fetchDetails();
+          _showAlert(
+              context: context, title: state.title, content: state.content);
+        }
+      },
+      child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
         bloc: _movieDetailsBloc,
-        listener: (context, state) {
-          if (state is MovieDetailsSendNotificationErrorState) {
-            _fetchDetails();
-            _showAlert(
-                context: context, title: state.title, content: state.content);
-          } else if (state is MovieDetailsSendNotificationSuccessState) {
-            _fetchDetails();
-            _showAlert(
-                context: context, title: state.title, content: state.content);
-          }
-        },
-        child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-          bloc: _movieDetailsBloc,
-          builder: (context, state) {
-            if (state is MovieDetailsGetState) {
-              return const Center(
+        builder: (context, state) {
+          if (state is MovieDetailsGetState) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(
+                    "${_movieType(widget.movieType)} • ${widget.city?.name}"),
+              ),
+              body: const Center(
                 child: CircularProgressIndicator(),
-              );
-            } else if (state is MovieDetailsGetSuccessState) {
-              return _buildPageContent(state, width, context);
-            } else if (state is MovieDetailsGetErrorState) {
-              return _buildErrorContent();
-            }
-            return Container();
-          },
-        ),
+              ),
+            );
+          } else if (state is MovieDetailsGetSuccessState) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(
+                    "${_movieType(widget.movieType)} • ${widget.city?.name}"),
+              ),
+              body: _isVertical(state, width, context),
+              floatingActionButton: _buildButtonsGroupe(context, state),
+            );
+          }
+          return _buildErrorContent();
+        },
       ),
     );
   }
@@ -138,6 +162,33 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           ],
         ),
         child: const Text('Что то пошло не так!'),
+      ),
+    );
+  }
+
+  SingleChildScrollView _buildVerticalPageContent(
+      MovieDetailsGetSuccessState state, double width, BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Left side: Poster
+                _buildPoster(state, width),
+
+                // Middle: Movie details
+                Expanded(
+                  child: _buildMovieDetails(state),
+                ),
+              ],
+            ),
+            // Right side: TextFields and Buttons
+            _buildInteractionArea(context, state),
+          ],
+        ),
       ),
     );
   }
@@ -176,14 +227,18 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
             _buildBodyTextField(),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            _buildCancelButton(context),
-            const SizedBox(width: 8),
-            _buildSendButton(state),
-          ],
-        ),
+      ],
+    );
+  }
+
+  Row _buildButtonsGroupe(
+      BuildContext context, MovieDetailsGetSuccessState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        _buildCancelButton(context),
+        const SizedBox(width: 8),
+        _buildSendButton(state),
       ],
     );
   }
