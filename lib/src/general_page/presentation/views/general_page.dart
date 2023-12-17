@@ -78,8 +78,11 @@ class TabLink extends StatelessWidget {
         onSelected(destination);
       },
       child: Container(
+        height: 44,
         width: width,
-        color: isActive ? ThemeViewModel().mainRed : null,
+        decoration: BoxDecoration(
+            color: isActive ? ThemeViewModel().mainRed : null,
+            borderRadius: BorderRadius.circular(20)),
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
         child: Icon(icon,
             color: isActive ? Colors.white : const Color(0xFF83858A)),
@@ -129,12 +132,13 @@ class _GeneralPageState extends State<GeneralPage> {
         body: Column(children: [
           const Expanded(child: AutoRouter()),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             child: Container(
+              height: 44,
               width: width,
               decoration: const BoxDecoration(
                   color: Color(0xFF222834),
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
