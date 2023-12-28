@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:support/core/utils/i18n.dart';
 
-const DATE_FORMAT = "yyyy-MM-dd";
+const DATE_FORMAT = "yyyy-MM-ddTHH:mm:ss";
 
 extension DateTimeExtension on DateTime {
   String format(String format) {
