@@ -209,11 +209,37 @@ const String PARAM_END = "end";
 const String PARAM_START = "start";
 const String PARAM_RELEASE_DATE = "release_date";
 const String PARAM_FORMAT = "format";
-const String newMovies = "new_movies";
-const String movieChannel = "movies_channel";
+
 const String bigPicture = 'BigPicture';
 const String highPriority = 'High';
 const String idTitle = 'Поиск по Id';
 const String numberTitle = 'Поиск по брони';
 const String numberlabel = 'Введите номер брони';
 const String idlabel = 'Введите id';
+
+const String mainTopic = 'mainTopic';
+const String moviesChannel = 'movies_channel';
+const String seanceChannel = 'seance_channel';
+const String maintenanceChannel = 'maintenance_channel';
+const String promotionsChannel = 'promotions_channel';
+
+const String testCode = 'testCode';
+const String mainCode = 'mainCode';
+
+const String testTopic = 'testTopic';
+const String testMoviesChannel = "test_movies_channel";
+const String testSeanceChannel = 'test_seance_channel';
+const String testMaintenanceChannel = 'test_maintenance_channel';
+const String testPromotionsChannel = 'test_promotions_channel';
+
+const String mainTopicUkraine = 'mainTopicUkraine';
+const String mainMoviesChannelUkraine = "main_movies_channel_Ukraine";
+const String mainSeanceChannelUkraine = 'main_seance_channel_Ukraine';
+const String mainMaintenanceChannelUkraine = 'main_maintenance_channel_Ukraine';
+const String mainPromotionsChannelUkraine = 'main_promotions_channel_Ukraine';
+
+const String testTopicUkraine = 'testTopicUkraine';
+const String testMoviesChannelUkraine = "test_movies_channel_Ukraine";
+const String testSeanceChannelUkraine = 'test_seance_channel_Ukraine';
+const String testMaintenanceChannelUkraine = 'test_maintenance_channel_Ukraine';
+const String testPromotionsChannelUkraine = 'test_promotions_channel_Ukraine';

@@ -32,6 +32,10 @@ dependencies:
   flutter_svg: ^2.0.9
   curl_logger_dio_interceptor: ^1.0.0
   cached_network_image: ^3.3.0
+  #logger
+  talker_flutter: ^3.5.7
+  talker_dio_logger: ^2.3.4
+  googleapis_auth: ^1.5.1
 
 dev_dependencies:
   flutter_test:

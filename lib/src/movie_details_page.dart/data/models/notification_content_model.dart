@@ -1,15 +1,15 @@
-import 'package:support/src/movie_details_page.dart/domain/entities/notification_content_entity.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:support/src/movie_details_page.dart/domain/entities/notification_entity.dart';
 
-class NotificationContentModel extends NotificationContentEntity {
-  const NotificationContentModel(
-      {required super.id,
-      required super.channelKey,
-      required super.notificationLayout,
-      required super.largeIcon,
-      required super.bigPicture,
-      required super.showWhen,
-      required super.autoDismissible,
-      required super.displayOnForeground,
-      required super.wakeUpScreen,
-      required super.payload});
+part 'notification_content_model.g.dart';
+
+@JsonSerializable()
+class NotificationContentModel extends NotificationContent {
+  const NotificationContentModel({required super.title, required super.body});
+
+  factory NotificationContentModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationContentModelFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$NotificationContentModelToJson(this);
 }

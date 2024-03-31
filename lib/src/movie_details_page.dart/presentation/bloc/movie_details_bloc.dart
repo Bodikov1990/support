@@ -2,13 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:support/core/utils/constants.dart';
+import 'package:support/main.dart';
+import 'package:support/settings/repositories/settings_repository.dart';
 import 'package:support/src/general_page/data/models/city_model.dart';
-import 'package:support/src/movie_details_page.dart/data/models/notification_action_btn_model.dart';
-import 'package:support/src/movie_details_page.dart/data/models/notification_body_model.dart';
-import 'package:support/src/movie_details_page.dart/data/models/notification_content_model.dart';
-import 'package:support/src/movie_details_page.dart/data/models/notification_data_model.dart';
-import 'package:support/src/movie_details_page.dart/data/models/notification_model.dart';
-import 'package:support/src/movie_details_page.dart/data/models/notification_payload_model.dart';
+import 'package:support/src/movie_details_page.dart/domain/entities/message_entity.dart';
+import 'package:support/src/movie_details_page.dart/domain/entities/notification_data_entity.dart';
+import 'package:support/src/movie_details_page.dart/domain/entities/notification_entity.dart';
+import 'package:support/src/movie_details_page.dart/domain/entities/push_notification_entity.dart';
 import 'package:support/src/movie_details_page.dart/domain/usecases/send_notification_usecase.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
 
@@ -18,6 +18,8 @@ part 'movie_details_state.dart';
 class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   final SendNotificationUseCase _sendNotificationUseCase =
       SendNotificationUseCase();
+  final SettingsRepository _settingsRepository = SettingsRepository();
+
   MovieDetailsBloc() : super(MovieDetailsInitial()) {
     on<MovieDetailsGetEvent>(_getMovieDetailsEvent);
     on<MovieDetailsSendNotificationEvent>(_sendNotificationEvent);
@@ -35,32 +37,25 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
 
   Future<void> _sendNotificationEvent(MovieDetailsSendNotificationEvent event,
       Emitter<MovieDetailsState> emit) async {
-    String toTopics = '/topics/${event.city.id}';
+    String toTopics = '${event.city.id}';
     String title =
         event.title.isEmpty ? event.movieModel.name ?? '' : event.title;
     String bodyText = event.bodyText.isEmpty
         ? event.movieModel.description ?? ''
         : event.bodyText;
 
-    final notificationBody =
-        NotificationBodyModel(title: title, body: bodyText);
-    final notificationContentModel = _createNotificationContentModel(event);
-    final notificationData = NotificationDataModel(
-      content: notificationContentModel,
-      actionButtons: _createActionButtons(),
-    );
+    final notificationData = await _createNotificationData(event);
+    final notificationContent =
+        NotificationContent(title: title, body: bodyText);
+    final message = Message(
+        topic: toTopics,
+        notification: notificationContent,
+        data: notificationData);
 
-    final notificationModel = NotificationModel(
-      to: toTopics,
-      priority: highPriority,
-      notification: notificationBody,
-      contentAvailable: true,
-      mutableContent: true,
-      data: notificationData,
-    );
+    final pushNotification = PushNotification(message: message);
 
     final result = await _sendNotificationUseCase(
-        SendNotificationUseCaseParams(notificationModel: notificationModel));
+        SendNotificationUseCaseParams(pushNotification: pushNotification));
 
     result.fold(
         (failure) => emit(const MovieDetailsSendNotificationErrorState(
@@ -69,31 +64,34 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
             title: 'Успешно!', content: 'Уведомление отправлено!')));
   }
 
-  NotificationContentModel _createNotificationContentModel(
-      MovieDetailsSendNotificationEvent event) {
-    return NotificationContentModel(
-        id: 1,
-        channelKey: movieChannel,
-        notificationLayout: bigPicture,
-        largeIcon: event.movieModel.image?.vertical,
-        bigPicture: event.movieModel.image?.vertical,
-        showWhen: true,
-        autoDismissible: true,
-        wakeUpScreen: true,
-        displayOnForeground: true,
-        payload: NotificationPayloadModel(
-            movieId: event.movieModel.id, type: _movieType(event.movieType)));
-  }
-
-  List<NotifiationActionBtnModel> _createActionButtons() {
-    return const [
-      NotifiationActionBtnModel(
-          key: "DISMISS",
-          label: "Закрыть",
-          actionType: "DismissAction",
-          isDangerousOption: true,
-          autoDismissible: true)
-    ];
+  Future<NotificationData> _createNotificationData(
+      MovieDetailsSendNotificationEvent event) async {
+    final env = await _settingsRepository.getEnv();
+    String? channel;
+    switch (env) {
+      case Environment.TEST:
+        channel = testMoviesChannel;
+        break;
+      case Environment.PRODUCTION:
+        channel = moviesChannel;
+        break;
+      case Environment.TEST_UA:
+        channel = testMoviesChannelUkraine;
+        break;
+      case Environment.PRODUCTION_UA:
+        channel = mainMoviesChannelUkraine;
+        break;
+      default:
+        channel = testMoviesChannel;
+    }
+    return NotificationData(
+      contentId: DateTime.now().microsecondsSinceEpoch.toString(),
+      channelKey: channel,
+      largeIcon: event.movieModel.image?.vertical,
+      bigPicture: event.movieModel.image?.vertical,
+      movieId: event.movieModel.id,
+      type: _movieType(event.movieType),
+    );
   }
 
   String _movieType(MovieType movieType) {

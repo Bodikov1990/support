@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'notification_body_entity.dart';
+part of 'notification_content_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationBodyEntity _$NotificationBodyEntityFromJson(
+NotificationContentModel _$NotificationContentModelFromJson(
         Map<String, dynamic> json) =>
-    NotificationBodyEntity(
+    NotificationContentModel(
       title: json['title'] as String?,
       body: json['body'] as String?,
     );
 
-Map<String, dynamic> _$NotificationBodyEntityToJson(
-        NotificationBodyEntity instance) =>
+Map<String, dynamic> _$NotificationContentModelToJson(
+        NotificationContentModel instance) =>
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,

@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 
 import 'package:support/core/usecase/usecase.dart';
 import 'package:support/core/utils/typedef.dart';
-import 'package:support/src/movie_details_page.dart/data/models/notification_model.dart';
+import 'package:support/src/movie_details_page.dart/domain/entities/push_notification_entity.dart';
 import 'package:support/src/movie_details_page.dart/repository/push_repository.dart';
 
 class SendNotificationUseCase
@@ -12,12 +12,12 @@ class SendNotificationUseCase
       GetIt.instance<PushRepository>();
   @override
   ResultFuture<void> call(SendNotificationUseCaseParams params) async =>
-      _movieDetailsRepository.sendNotification(params.notificationModel);
+      _movieDetailsRepository.sendNotification(params.pushNotification);
 }
 
 class SendNotificationUseCaseParams {
-  final NotificationModel notificationModel;
+  final PushNotification pushNotification;
   SendNotificationUseCaseParams({
-    required this.notificationModel,
+    required this.pushNotification,
   });
 }

@@ -1,13 +1,19 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, use_build_context_synchronously
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:support/core/utils/constants.dart';
 import 'package:support/core/viewmodels/theme_view_model.dart';
+import 'package:support/main.dart';
+import 'package:support/settings/repositories/settings_repository.dart';
 import 'package:support/src/all_movies_page/presentation/views/all_moves_page.dart';
 import 'package:support/src/general_page/data/models/city_model.dart';
 import 'package:support/src/push_page/presentation/bloc/push_bloc.dart';
+import 'package:support/src/user/repository/user_repository.dart';
 
 @RoutePage()
 class PushPage extends StatefulWidget {
@@ -24,6 +30,8 @@ class PushPage extends StatefulWidget {
 }
 
 class _PushPageState extends State<PushPage> {
+  int developerModeCounter = 0;
+  DateTime _lastTitleTapTime = DateTime.now();
   final _pushBloc = PushBloc();
 
   CityModel? selectedCity;
@@ -42,60 +50,82 @@ class _PushPageState extends State<PushPage> {
     }
   }
 
+  void _increaseDeveloperCounter() {
+    log("developerModeCounter = $developerModeCounter");
+    DateTime now = DateTime.now();
+    log(now.difference(_lastTitleTapTime).inSeconds.toString());
+    if (now.difference(_lastTitleTapTime).inMilliseconds <= 300) {
+      developerModeCounter += 1;
+    } else {
+      developerModeCounter = 1;
+    }
+    _lastTitleTapTime = now;
+    if (developerModeCounter >= 10) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(58),
           child: AppBar(
-            title: const Text('Push уведомления'),
+            title: GestureDetector(
+                onTap: _increaseDeveloperCounter,
+                child: const Text('Push уведомления')),
             centerTitle: false,
             actions: <Widget>[
-              DropdownButtonHideUnderline(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Container(
-                    height: 42,
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 1, color: Color(0xFFE3E8F2)),
-                        borderRadius: BorderRadius.circular(6),
+              Row(
+                children: [
+                  if (developerModeCounter >= 10) const SettingsSection(),
+                  DropdownButtonHideUnderline(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                      child: Container(
+                        height: 42,
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 1, color: Color(0xFFE3E8F2)),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          shadows: const [
+                            BoxShadow(
+                              color: Color(0x0C101828),
+                              blurRadius: 2,
+                              offset: Offset(0, 1),
+                              spreadRadius: 0,
+                            )
+                          ],
+                        ),
+                        child: DropdownButton<CityModel>(
+                          value: selectedCity,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          onChanged: (CityModel? newValue) {
+                            setState(() {
+                              selectedCity = newValue;
+                            });
+                            _pushBloc.add(PushGetMoviesEvent(
+                                cityId: selectedCity?.id ?? '',
+                                cities: widget.cities,
+                                movieType: activeMovieType ?? MovieType.TODAY));
+                          },
+                          items: widget.cities.map<DropdownMenuItem<CityModel>>(
+                              (CityModel value) {
+                            return DropdownMenuItem<CityModel>(
+                              value: value,
+                              child: Text(value.name ?? ''),
+                            );
+                          }).toList(),
+                        ),
                       ),
-                      shadows: const [
-                        BoxShadow(
-                          color: Color(0x0C101828),
-                          blurRadius: 2,
-                          offset: Offset(0, 1),
-                          spreadRadius: 0,
-                        )
-                      ],
-                    ),
-                    child: DropdownButton<CityModel>(
-                      value: selectedCity,
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      onChanged: (CityModel? newValue) {
-                        setState(() {
-                          selectedCity = newValue;
-                        });
-                        _pushBloc.add(PushGetMoviesEvent(
-                            cityId: selectedCity?.id ?? '',
-                            cities: widget.cities,
-                            movieType: activeMovieType ?? MovieType.TODAY));
-                      },
-                      items: widget.cities
-                          .map<DropdownMenuItem<CityModel>>((CityModel value) {
-                        return DropdownMenuItem<CityModel>(
-                          value: value,
-                          child: Text(value.name ?? ''),
-                        );
-                      }).toList(),
                     ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
@@ -208,6 +238,68 @@ class _PushPageState extends State<PushPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SettingsSection extends StatefulWidget {
+  const SettingsSection({super.key});
+
+  @override
+  State<SettingsSection> createState() => _SettingsSectionState();
+}
+
+class _SettingsSectionState extends State<SettingsSection> {
+  final SettingsRepository _settingsRepository = SettingsRepository();
+  UserRepository userRepository = GetIt.instance<UserRepository>();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  void _loadSettings() async {
+    env = await _settingsRepository.getEnv();
+    setState(() {});
+  }
+
+  void _updateEnv(Environment newEnv) async {
+    await _settingsRepository.setEnv(newEnv);
+    RestartWidget.restartApp(context);
+  }
+
+  Environment? env;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 100,
+      child: DropdownButtonFormField<Environment>(
+        icon: const Icon(Icons.keyboard_arrow_down),
+        iconEnabledColor: Colors.white,
+        value: env,
+        isDense: true,
+        isExpanded: true,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 16.0,
+          fontWeight: FontWeight.w600,
+        ),
+        hint: const Text('Select environment'),
+        items: Environment.values.map((env) {
+          return DropdownMenuItem<Environment>(
+            value: env,
+            child: Text(
+              env.toString(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          );
+        }).toList(),
+        onChanged: (newEnv) {
+          _updateEnv(newEnv ?? Environment.PRODUCTION);
+        },
       ),
     );
   }

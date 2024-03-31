@@ -2,24 +2,28 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:support/core/errors/exeptions.dart';
+import 'package:support/core/utils/access_token.dart';
 import 'package:support/injections/dio/push_dio.dart';
-import 'package:support/src/movie_details_page.dart/domain/entities/notification_entity.dart';
+import 'package:support/src/movie_details_page.dart/data/models/push_notification_model.dart';
 
 abstract class PushRemoteDataSource {
-  Future<void> sendNotification(NotificationEntity notificationEntity);
+  Future<void> sendNotification(PushNotificationModel pushNotificationModel);
 }
 
 class PushRemoteDataSourceImpl implements PushRemoteDataSource {
   final PushDio _pushDio = GetIt.instance<PushDio>();
+  AccessFirebaseToken accessFirebaseToken = AccessFirebaseToken();
 
   @override
-  Future<void> sendNotification(NotificationEntity notificationEntity) async {
-    const String url = '/fcm/send';
+  Future<void> sendNotification(
+      PushNotificationModel pushNotificationModel) async {
+    const String url = '/v1/projects/kinopark-kinoplexx-kz/messages:send';
 
-    final data = notificationEntity.toJson();
-
+    final data = pushNotificationModel.toJson();
     try {
-      debugPrint(data.toString());
+      String token = await accessFirebaseToken.getAccessToken();
+
+      _pushDio.options.headers['Authorization'] = "Bearer $token";
       _pushDio.options.headers['Content-Type'] = 'application/json';
 
       Response response = await _pushDio.post(url, data: data);
@@ -27,7 +31,7 @@ class PushRemoteDataSourceImpl implements PushRemoteDataSource {
       if (response.statusCode != 200) {
         throw APIExeption(
             message: response.statusMessage ??
-                "Exception from MovieDetailsRemoteDataSourceImpl",
+                "Exception from PushRemoteDataSourceImpl",
             statusCode: response.statusCode ?? 0);
       }
     } on APIExeption {

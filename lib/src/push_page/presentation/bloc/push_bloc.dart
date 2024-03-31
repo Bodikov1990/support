@@ -21,7 +21,10 @@ class PushBloc extends Bloc<PushEvent, PushState> {
       PushGetMoviesEvent event, Emitter<PushState> emit) async {
     emit(PushGetMoviesLoadingState());
     mainMovies.clear();
-    if (event.cityId == newMovies) {
+    if (event.cityId == mainTopic ||
+        event.cityId == testTopic ||
+        event.cityId == testTopicUkraine ||
+        event.cityId == mainTopicUkraine) {
       await _fetchAllMovies(event.cities, event.movieType);
     } else {
       await _fetchMoviesForCity(event.cityId, event.movieType);
@@ -33,7 +36,10 @@ class PushBloc extends Bloc<PushEvent, PushState> {
 
   Future<void> _fetchAllMovies(List<CityModel> cities, MovieType type) async {
     for (CityModel city in cities) {
-      if (city.id == newMovies) continue;
+      if (city.id == mainTopic ||
+          city.id == testTopic ||
+          city.id == testTopicUkraine ||
+          city.id == mainTopicUkraine) continue;
       await _fetchMoviesForCity(city.id ?? '', type);
     }
   }

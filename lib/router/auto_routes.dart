@@ -7,11 +7,11 @@ import 'package:support/src/general_page/data/models/city_model.dart';
 
 import 'package:support/src/general_page/presentation/views/general_page.dart';
 import 'package:support/src/id_search_page/presentation/views/id_search_page.dart';
-import 'package:support/src/movie_details_page.dart/presentation/views/push_page.dart';
+import 'package:support/src/movie_details_page.dart/presentation/views/movie_details_page.dart';
 
 import 'package:support/src/ticket_search_page/presentation/views/ticket_search_page.dart';
 import 'package:support/src/push_page/data/models/movie_model.dart';
-import 'package:support/src/push_page/presentation/views/all_movies_page.dart';
+import 'package:support/src/push_page/presentation/views/push_sending_page.dart';
 
 part 'auto_routes.gr.dart';
 

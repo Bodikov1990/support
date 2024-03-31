@@ -52,7 +52,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
     _movieDetailsBloc.add(MovieDetailsGetEvent(
         city: widget.city ??
             const CityModel(
-                id: newMovies,
+                id: mainTopic,
                 name: "Все города",
                 code: 'allCity',
                 sortOrder: 0),
@@ -305,7 +305,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
       ),
       child: TextButton(
           onPressed: () {
-            AutoRouter.of(context).pop();
+            AutoRouter.of(context).maybePop();
           },
           child: const Text('Отмена', style: TextStyle(color: Colors.black))),
     );
