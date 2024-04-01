@@ -9,19 +9,19 @@ class AccessFirebaseToken {
         ServiceAccountCredentials.fromJson(
           {
             "type": "service_account",
-            "project_id": "kinopark-kinoplexx-kz",
-            "private_key_id": "754a2643723128703cfc438f7b999a99bdc574a7",
+            "project_id": "kz-kinopark-kinpolexx",
+            "private_key_id": "7a18ea2d70658a2bfb3ca0bb0b530c242df08b67",
             "private_key":
-                "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0QHh0ZusJ8HTT\n7dAyx7/d0Owmo/XfX7gpmDtpuZrexRnSZTigctG3wrx79AAAwtQ4tTrka14mYcSk\ncVdfD59cEnkhLzD1uNTeJJNoCWVPY0UWPnp8UqyUFH+08IUwZ+uxsVTPSlCCFaiF\nsB1MN8HOTKHFL9sUxCzKTLk5lyusmoiTvwI3tJ9gFxw2nfsfC1dAF/77NjJ+NSVq\nBmgukZVUODQLZ/ShGwdnTVzoU7kesNarpEP25qTC75v5G4ObUccGQlEJmPmA++lY\nPyOsaor97t4Q/GhiySF0X41paTiWVnVIYqY0fUUvM6nfK1s+oErGDTw0rDveMQB8\n5hWWfrKVAgMBAAECggEASBM9dyIOGr/VH0cJCL0ZqdsYCo1mS+bs72jpXOm0FR7Q\nJ/KElZfD5wxNrOzQsX02OeSxw1NxZrySUkTl8GOBT+ItIElL9P1u1NLgRGn5Yiiq\nH+5ksOCoFGAr/pBsWYI8WyWy6V5oWdPKOobE+EyVSOYYi44Ktr+Iv221ZONfOdk2\n1OT+/7614Iz+/BOkTAJ0kZTbzhWxBBtVnQjUQqWLjXg6mKIt4KLqJEGBbzp1ZbvL\nyYzm4qrb4ndEl932o/cL9lg4xFuNnOG+Ui+aGJ8yxrDJNSA3FXzg2BK34HSrj/9N\ni5LUmXFI8tBPpOhMqrGYCRAemfOYOXhrs4XsGuu2YwKBgQDltsJMJWbgdi6gz75r\nnrTW7N82ykcospJPE6ofvX9wAvqYObhYlwgHJeywYeyx/euDHJEKMuNX33b3wM+9\nqCmqcyL1WKLQCcPqAvSU5n4NqFEv8KGDmpKAwt5gRcjjNtvgKHgAAMKgxg18zmz8\nbRjba8HYkmqrawNP11SPZEg2xwKBgQDI4MT4fjlaFf3hbE73f/+XU2D6N+xnkIpT\nKAlmgD5za33vvtMIFy0o1XptiZfSjfiVdi/W6b94HOqAt994RJV4guJ8nyAPrmPm\n5Ffu+vndQHrwHI+B1JsMl4ECwAHOzJ0nhfMUAJb8lZDjMgbnb+uMuzSsv67hwtVA\nB+vDd+4/wwKBgB1WdAYpmLP+JAJhxd4UzN/OLMvglan69Hio+EdJemch2kNqy8J0\nt4/CJjJ4rzQkS9nY4iU9To/AeH833tBIE9ozDjnrcg/Dz4OpkPcbYOn5nzTSNK6M\nJT3QpXoCL5/lN7uvL3RApJrH8J0J+B1dCZmsb3trZ7gw2KFvzNrrYdWtAoGAHFib\ncvVc4nl3+fdurT5CsvfxF14M3hBndJSRvwUZyu/ANbSX0uxyUvDM9egUpIGkMnMb\nDRivDCQIc2F/B1mmPfs6Opu5ynyxXEOcpPyFhdMzhe6B0bBOsNgwPFMb7jKxeoJM\nauYqaDoy19yXXNFOS+2e4UGrS/BSZ1a2zj5+QEECgYEAtbcMNEHM15cfa0/dZsjm\n9VcuDpUnGrM3g0TwsKjAav0CF5LJfAxUA1+eMwsHBekFEx9UopipyUhBAnOd+oIA\niXOk1BS0bL8MuC1Ss/8Jj+ByFrgR8SI648AGVlXxiXaYi3FJQ5xFwPWx/qIIRdMP\nlf8Jv/YOdgIukNF1X/0LPcY=\n-----END PRIVATE KEY-----\n",
+                "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDnVyBWj/ltOfxt\n9cyytbWYV/2K21q7lnt9V8rtrB0BqXrTCg32dy89kdW6n41RxreJa2WFjJcBHGiQ\nbQtu1asY7hWCMJKM1ySdfhW2n9h33J+FBKKcEPkqHz4Pdq54epn10gX0ctDuGC8B\nsl5k6wpcv7I+V6KMSv0Z/Gk2sdwVBhYYEKsFHsCoMaK0igThZR2UrzBiDeJ8AFuC\npYmtiNoGDKFof7PF8H6lVQkJ/IVq82mUzqxYPkKL0RpOy6lr3pf7As5YaFvPzdMI\n1e11ZPGwWn7DdAjRTO71B4AEzegE4naslHyqySjtvHLf5J6S8PkxAUcxZQwnTZ//\nwFL4h1TvAgMBAAECggEAHkG3cYrgEQiZ+tnAnYkFiLjNaOlamxlJ6nFekapGmu6L\nKWnxvJAHBjL6NK/kgFMQszDwNMDYCSWpiWYxrhvVBmwxNPdcW35SBCU2+s06NycM\nWA3spKPVqswuRkB7/jbuxwdijv+rUtCn6T1meiWBk/LggaXdlSLDqq/oJOarRbZn\n6WTA3v3ztrh6TtYvXjZX9CcsIoeUzfIfTmvRvX1bxedKmh31EONm4BRLuUaLQuQo\ncMMbU1Kx9Ma6NDUBCDXMfblfRBsYNKKgflb711p9BL9ZAfu2vSesZG88eSHC2drN\nNBjID1cgr+tvbgTEgjpaWjCDQw6Ck89FIQhthG9bfQKBgQD1U9+9/WCKICQGVdgP\naNm3O1vJ1tS+4SAlPqifZ3QzdnhdoZKwUJxBOtwnBah4g1BCeBjUXsI2M2I3TsN6\ngfACM+ii/JQ4XJsAYS3y16CBmdhR7h2Q3s3imJuPWHxsDb4nyRyusqIKrfaz8hcY\nn3IPrZpXsE/ghz3JHRhuzFyvQwKBgQDxZ3sXW8ra9LOT4OIRS2UmoQgCVgJ9DdlK\nVaKfxxXxJPgUAioCnJq3ftYDIvprkYFGPD9zV30OKwuvne30EhADtyC13WiFPZ+I\nZJ8l5cfFktEHn/W5fjbI+qo+hhy19mfRx/n1LikeTrO2A+IV4Kd35nFzMrhTnyuh\nxhoRsWta5QKBgQCVkqamelYiwMfWCP6rHn0nBwzGebHKEw37R0GdtoCVY9StGXaL\nAwrRhmZ1cDCwETec3wYcbQ2x6BAosl/iUFiZrzZWMPLZjjR+vcE6/xaADeFiym/C\nROV4Ex08/3EUnChkr2xKYuUC59+zBJXqUERFpM2mSvvYY/xaot+jpfuYawKBgQDk\nYwWWlNZ3jnjzGBhpSk5ZXJJKO3tBOr/vztL7nQvKSDKYI3ABZo4NumbZMtd+u3t1\nqnxRMF108Q6uSJkeh5Q1H6VHykAfhqyPCrtyzFDTQFKYhyKgKqPEQzqbyqARGx0f\n4LU/3Ds0nDrzofrcvd1S12dQGJVBL97Ev7pcMOGjbQKBgFMSAqprvvRxEhc99lIU\nUJFWauSgT+7R17+CRJGTUJIFBSWuHtiDRw5NNjThQhxq0t0Y9s68nfmb9h9KFRSN\nxtyE2jWy6OkAeQKSPuU8POFgQHU2uHKTUyR8wlZINBkMZHsAPgTk7LL6NC33lS/e\nbxyj9IEEpQen6HCD6T3wITHa\n-----END PRIVATE KEY-----\n",
             "client_email":
-                "firebase-adminsdk-zhjee@kinopark-kinoplexx-kz.iam.gserviceaccount.com",
-            "client_id": "101577074564125838107",
+                "firebase-adminsdk-2lacj@kz-kinopark-kinpolexx.iam.gserviceaccount.com",
+            "client_id": "115076656074636304946",
             "auth_uri": "https://accounts.google.com/o/oauth2/auth",
             "token_uri": "https://oauth2.googleapis.com/token",
             "auth_provider_x509_cert_url":
                 "https://www.googleapis.com/oauth2/v1/certs",
             "client_x509_cert_url":
-                "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zhjee%40kinopark-kinoplexx-kz.iam.gserviceaccount.com",
+                "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2lacj%40kz-kinopark-kinpolexx.iam.gserviceaccount.com",
             "universe_domain": "googleapis.com"
           },
         ),

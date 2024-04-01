@@ -17,7 +17,7 @@ class PushRemoteDataSourceImpl implements PushRemoteDataSource {
   @override
   Future<void> sendNotification(
       PushNotificationModel pushNotificationModel) async {
-    const String url = '/v1/projects/kinopark-kinoplexx-kz/messages:send';
+    const String url = '/v1/projects/kz-kinopark-kinpolexx/messages:send';
 
     final data = pushNotificationModel.toJson();
     try {
