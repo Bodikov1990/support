@@ -1,13 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:support/core/utils/constants.dart';
 import 'package:support/core/viewmodels/theme_view_model.dart';
 import 'package:support/src/ticket_search_page/data/models/ticket_model.dart';
 import 'package:support/src/ticket_search_page/presentation/bloc/ticket_search_bloc.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 @RoutePage()
 class NumberSearchPage extends StatefulWidget {
@@ -26,6 +30,8 @@ class _NumberSearchPageState extends State<NumberSearchPage> {
   final TextEditingController _numberController = TextEditingController();
   final _ticketSearchBloc = TicketSearchBloc();
   final Color? cardColor = Colors.white;
+  DateTime _lastTitleTapTime = DateTime.now();
+  int developerModeCounter = 0;
 
   @override
   void initState() {
@@ -48,6 +54,21 @@ class _NumberSearchPageState extends State<NumberSearchPage> {
     return MediaQuery.of(context).size.width - 62;
   }
 
+  void _increaseDeveloperCounter() {
+    log("developerModeCounter = $developerModeCounter");
+    DateTime now = DateTime.now();
+    log(now.difference(_lastTitleTapTime).inSeconds.toString());
+    if (now.difference(_lastTitleTapTime).inMilliseconds <= 300) {
+      developerModeCounter += 1;
+    } else {
+      developerModeCounter = 1;
+    }
+    _lastTitleTapTime = now;
+    if (developerModeCounter >= 10) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<TicketSearchBloc, TicketSearchState>(
@@ -64,8 +85,19 @@ class _NumberSearchPageState extends State<NumberSearchPage> {
             if (state is TicketSearchInitial) {
               return Scaffold(
                 appBar: AppBar(
-                  title: const Text(numberTitle),
+                  title: GestureDetector(
+                      onTap: _increaseDeveloperCounter,
+                      child: const Text(numberTitle)),
                   centerTitle: true,
+                  leading: developerModeCounter >= 10
+                      ? TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    TalkerScreen(talker: GetIt.I<Talker>())));
+                          },
+                          child: const Text('Log'))
+                      : const SizedBox(),
                 ),
                 floatingActionButton: _buildTextField(),
               );
