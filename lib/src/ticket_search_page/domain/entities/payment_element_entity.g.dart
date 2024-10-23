@@ -10,7 +10,7 @@ PaymentElementEntity _$PaymentElementEntityFromJson(
         Map<String, dynamic> json) =>
     PaymentElementEntity(
       id: json['id'] as String?,
-      type: json['type'] as int?,
+      type: (json['type'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 

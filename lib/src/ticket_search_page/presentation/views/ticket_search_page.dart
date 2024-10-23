@@ -562,12 +562,12 @@ class _NumberSearchPageState extends State<NumberSearchPage> {
         child: ElevatedButton(
           onPressed: () {},
           style: ButtonStyle(
-            fixedSize: MaterialStatePropertyAll(
+            fixedSize: WidgetStatePropertyAll(
               Size.fromWidth(width),
             ),
             backgroundColor:
-                MaterialStateProperty.all<Color>(ThemeViewModel().mainRed),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                WidgetStateProperty.all<Color>(ThemeViewModel().mainRed),
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6.0),
               ),

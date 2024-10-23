@@ -46,8 +46,8 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
 
     final notificationData = await _createNotificationData(event);
     final notificationContent =
-        NotificationContent(title: title, body: bodyText);
-    final message = Message(
+        NotificationContentEntity(title: title, body: bodyText);
+    final message = MessageEntity(
         topic: toTopics,
         notification: notificationContent,
         data: notificationData);
@@ -64,7 +64,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
             title: 'Успешно!', content: 'Уведомление отправлено!')));
   }
 
-  Future<NotificationData> _createNotificationData(
+  Future<NotificationDataEntity> _createNotificationData(
       MovieDetailsSendNotificationEvent event) async {
     final env = await _settingsRepository.getEnv();
     String? channel;
@@ -84,7 +84,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
       default:
         channel = testMoviesChannel;
     }
-    return NotificationData(
+    return NotificationDataEntity(
       contentId: DateTime.now().microsecondsSinceEpoch.toString(),
       channelKey: channel,
       largeIcon: event.movieModel.image?.vertical,

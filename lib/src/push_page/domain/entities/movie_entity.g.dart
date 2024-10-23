@@ -22,7 +22,7 @@ MovieEntity _$MovieEntityFromJson(Map<String, dynamic> json) => MovieEntity(
       image: json['image'] == null
           ? null
           : ImageEntity.fromJson(json['image'] as Map<String, dynamic>),
-      duration: json['duration'] as int?,
+      duration: (json['duration'] as num?)?.toInt(),
       releaseDate: json['release_date'] as String?,
     );
 

@@ -4,7 +4,7 @@ import 'package:support/src/movie_details_page.dart/domain/entities/android_enti
 part 'android_model.g.dart';
 
 @JsonSerializable()
-class AndroidModel extends Android {
+class AndroidModel extends AndroidEntity {
   const AndroidModel();
 
   factory AndroidModel.fromJson(Map<String, dynamic> json) =>

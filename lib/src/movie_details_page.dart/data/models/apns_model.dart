@@ -4,7 +4,7 @@ import 'package:support/src/movie_details_page.dart/domain/entities/apns_entity.
 part 'apns_model.g.dart';
 
 @JsonSerializable()
-class ApnsModel extends Apns {
+class ApnsModel extends ApnsEntity {
   const ApnsModel();
 
   factory ApnsModel.fromJson(Map<String, dynamic> json) =>

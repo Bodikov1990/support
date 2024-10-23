@@ -5,18 +5,19 @@ import 'package:support/src/movie_details_page.dart/domain/entities/payload_enti
 part 'apns_entity.g.dart';
 
 @JsonSerializable()
-class Apns extends Equatable {
+class ApnsEntity extends Equatable {
   final Payload? payload;
   final Map<String, String>? headers;
 
-  const Apns(
+  const ApnsEntity(
       {this.payload = const Payload(),
       this.headers = const {"apns-priority": "10"}});
 
   @override
   List<Object?> get props => [payload, headers];
 
-  factory Apns.fromJson(Map<String, dynamic> json) => _$ApnsFromJson(json);
+  factory ApnsEntity.fromJson(Map<String, dynamic> json) =>
+      _$ApnsEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApnsToJson(this);
+  Map<String, dynamic> toJson() => _$ApnsEntityToJson(this);
 }

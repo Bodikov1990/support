@@ -11,7 +11,7 @@ PushNotificationModel _$PushNotificationModelFromJson(
     PushNotificationModel(
       message: json['message'] == null
           ? null
-          : Message.fromJson(json['message'] as Map<String, dynamic>),
+          : MessageEntity.fromJson(json['message'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PushNotificationModelToJson(

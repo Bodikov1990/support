@@ -14,8 +14,8 @@ SeatEntity _$SeatEntityFromJson(Map<String, dynamic> json) => SeatEntity(
       zoneId: json['zone_id'] as String?,
       row: json['row'] as String?,
       col: json['col'] as String?,
-      price: json['price'] as int?,
-      status: json['status'] as int?,
+      price: (json['price'] as num?)?.toInt(),
+      status: (json['status'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$SeatEntityToJson(SeatEntity instance) =>

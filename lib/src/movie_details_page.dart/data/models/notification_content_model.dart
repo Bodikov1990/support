@@ -4,7 +4,7 @@ import 'package:support/src/movie_details_page.dart/domain/entities/notification
 part 'notification_content_model.g.dart';
 
 @JsonSerializable()
-class NotificationContentModel extends NotificationContent {
+class NotificationContentModel extends NotificationContentEntity {
   const NotificationContentModel({required super.title, required super.body});
 
   factory NotificationContentModel.fromJson(Map<String, dynamic> json) =>

@@ -9,74 +9,6 @@
 
 part of 'auto_routes.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    AllMoviesRoute.name: (routeData) {
-      final args = routeData.argsAs<AllMoviesRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: AllMoviesPage(
-          key: args.key,
-          isMobile: args.isMobile,
-          city: args.city,
-          movies: args.movies,
-          movieType: args.movieType,
-        ),
-      );
-    },
-    GeneralRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const GeneralPage(),
-      );
-    },
-    IdSearchRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const IdSearchPage(),
-      );
-    },
-    MovieDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<MovieDetailsRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: MovieDetailsPage(
-          key: args.key,
-          isMobile: args.isMobile,
-          city: args.city,
-          movie: args.movie,
-          movieType: args.movieType,
-        ),
-      );
-    },
-    NumberSearchRoute.name: (routeData) {
-      final args = routeData.argsAs<NumberSearchRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: NumberSearchPage(
-          key: args.key,
-          isMobile: args.isMobile,
-        ),
-      );
-    },
-    PushRoute.name: (routeData) {
-      final args = routeData.argsAs<PushRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: PushPage(
-          key: args.key,
-          isMobile: args.isMobile,
-          cities: args.cities,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [AllMoviesPage]
 class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
@@ -101,8 +33,19 @@ class AllMoviesRoute extends PageRouteInfo<AllMoviesRouteArgs> {
 
   static const String name = 'AllMoviesRoute';
 
-  static const PageInfo<AllMoviesRouteArgs> page =
-      PageInfo<AllMoviesRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AllMoviesRouteArgs>();
+      return AllMoviesPage(
+        key: args.key,
+        isMobile: args.isMobile,
+        city: args.city,
+        movies: args.movies,
+        movieType: args.movieType,
+      );
+    },
+  );
 }
 
 class AllMoviesRouteArgs {
@@ -141,7 +84,12 @@ class GeneralRoute extends PageRouteInfo<void> {
 
   static const String name = 'GeneralRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const GeneralPage();
+    },
+  );
 }
 
 /// generated route for
@@ -155,7 +103,12 @@ class IdSearchRoute extends PageRouteInfo<void> {
 
   static const String name = 'IdSearchRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const IdSearchPage();
+    },
+  );
 }
 
 /// generated route for
@@ -182,8 +135,19 @@ class MovieDetailsRoute extends PageRouteInfo<MovieDetailsRouteArgs> {
 
   static const String name = 'MovieDetailsRoute';
 
-  static const PageInfo<MovieDetailsRouteArgs> page =
-      PageInfo<MovieDetailsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MovieDetailsRouteArgs>();
+      return MovieDetailsPage(
+        key: args.key,
+        isMobile: args.isMobile,
+        city: args.city,
+        movie: args.movie,
+        movieType: args.movieType,
+      );
+    },
+  );
 }
 
 class MovieDetailsRouteArgs {
@@ -229,8 +193,16 @@ class NumberSearchRoute extends PageRouteInfo<NumberSearchRouteArgs> {
 
   static const String name = 'NumberSearchRoute';
 
-  static const PageInfo<NumberSearchRouteArgs> page =
-      PageInfo<NumberSearchRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NumberSearchRouteArgs>();
+      return NumberSearchPage(
+        key: args.key,
+        isMobile: args.isMobile,
+      );
+    },
+  );
 }
 
 class NumberSearchRouteArgs {
@@ -269,7 +241,17 @@ class PushRoute extends PageRouteInfo<PushRouteArgs> {
 
   static const String name = 'PushRoute';
 
-  static const PageInfo<PushRouteArgs> page = PageInfo<PushRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PushRouteArgs>();
+      return PushPage(
+        key: args.key,
+        isMobile: args.isMobile,
+        cities: args.cities,
+      );
+    },
+  );
 }
 
 class PushRouteArgs {

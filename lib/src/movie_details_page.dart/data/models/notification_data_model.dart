@@ -4,7 +4,7 @@ import 'package:support/src/movie_details_page.dart/domain/entities/notification
 part 'notification_data_model.g.dart';
 
 @JsonSerializable()
-class NotificationDataModel extends NotificationData {
+class NotificationDataModel extends NotificationDataEntity {
   const NotificationDataModel(
       {required super.channelKey,
       required super.largeIcon,

@@ -6,8 +6,9 @@ part of 'notification_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationData _$NotificationDataFromJson(Map<String, dynamic> json) =>
-    NotificationData(
+NotificationDataEntity _$NotificationDataEntityFromJson(
+        Map<String, dynamic> json) =>
+    NotificationDataEntity(
       contentId: json['content.id'] as String?,
       channelKey: json['content.channelKey'] as String?,
       displayOnForeground:
@@ -30,7 +31,8 @@ NotificationData _$NotificationDataFromJson(Map<String, dynamic> json) =>
           json['actionButtons.1.autoDismissible'] as String? ?? "false",
     );
 
-Map<String, dynamic> _$NotificationDataToJson(NotificationData instance) =>
+Map<String, dynamic> _$NotificationDataEntityToJson(
+        NotificationDataEntity instance) =>
     <String, dynamic>{
       'content.id': instance.contentId,
       'content.channelKey': instance.channelKey,

@@ -11,7 +11,7 @@ TicketPaymentEntity _$TicketPaymentEntityFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       dateTime: json['date_time'] as String?,
       invoiceId: json['invoice_id'] as String?,
-      amount: json['amount'] as int?,
+      amount: (json['amount'] as num?)?.toInt(),
       currency: json['currency'] as String?,
       terminal: json['terminal'] as String?,
       accountId: json['account_id'] as String?,
@@ -23,7 +23,7 @@ TicketPaymentEntity _$TicketPaymentEntityFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       phone: json['phone'] as String?,
       cardId: json['card_id'] as String?,
-      status: json['status'] as int?,
+      status: (json['status'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$TicketPaymentEntityToJson(

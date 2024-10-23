@@ -6,7 +6,7 @@ part of 'apns_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Apns _$ApnsFromJson(Map<String, dynamic> json) => Apns(
+ApnsEntity _$ApnsEntityFromJson(Map<String, dynamic> json) => ApnsEntity(
       payload: json['payload'] == null
           ? const Payload()
           : Payload.fromJson(json['payload'] as Map<String, dynamic>),
@@ -16,7 +16,8 @@ Apns _$ApnsFromJson(Map<String, dynamic> json) => Apns(
           const {"apns-priority": "10"},
     );
 
-Map<String, dynamic> _$ApnsToJson(Apns instance) => <String, dynamic>{
+Map<String, dynamic> _$ApnsEntityToJson(ApnsEntity instance) =>
+    <String, dynamic>{
       'payload': instance.payload,
       'headers': instance.headers,
     };

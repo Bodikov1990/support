@@ -6,7 +6,7 @@ part 'push_notification_entity.g.dart';
 
 @JsonSerializable()
 class PushNotification extends Equatable {
-  final Message? message;
+  final MessageEntity? message;
 
   const PushNotification({this.message});
 

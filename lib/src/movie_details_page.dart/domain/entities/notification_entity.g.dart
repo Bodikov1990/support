@@ -6,14 +6,15 @@ part of 'notification_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationContent _$NotificationContentFromJson(Map<String, dynamic> json) =>
-    NotificationContent(
+NotificationContentEntity _$NotificationContentEntityFromJson(
+        Map<String, dynamic> json) =>
+    NotificationContentEntity(
       title: json['title'] as String?,
       body: json['body'] as String?,
     );
 
-Map<String, dynamic> _$NotificationContentToJson(
-        NotificationContent instance) =>
+Map<String, dynamic> _$NotificationContentEntityToJson(
+        NotificationContentEntity instance) =>
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,

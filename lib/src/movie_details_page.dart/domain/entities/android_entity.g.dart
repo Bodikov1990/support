@@ -6,10 +6,12 @@ part of 'android_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Android _$AndroidFromJson(Map<String, dynamic> json) => Android(
+AndroidEntity _$AndroidEntityFromJson(Map<String, dynamic> json) =>
+    AndroidEntity(
       priority: json['priority'] as String? ?? "high",
     );
 
-Map<String, dynamic> _$AndroidToJson(Android instance) => <String, dynamic>{
+Map<String, dynamic> _$AndroidEntityToJson(AndroidEntity instance) =>
+    <String, dynamic>{
       'priority': instance.priority,
     };

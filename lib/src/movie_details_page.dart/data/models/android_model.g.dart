@@ -7,7 +7,7 @@ part of 'android_model.dart';
 // **************************************************************************
 
 AndroidModel _$AndroidModelFromJson(Map<String, dynamic> json) =>
-    const AndroidModel();
+    AndroidModel();
 
 Map<String, dynamic> _$AndroidModelToJson(AndroidModel instance) =>
     <String, dynamic>{};

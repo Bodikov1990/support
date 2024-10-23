@@ -7,7 +7,7 @@ part of 'aps_entity.dart';
 // **************************************************************************
 
 Aps _$ApsFromJson(Map<String, dynamic> json) => Aps(
-      mutableContent: json['mutable-content'] as int? ?? 1,
+      mutableContent: (json['mutable-content'] as num?)?.toInt() ?? 1,
     );
 
 Map<String, dynamic> _$ApsToJson(Aps instance) => <String, dynamic>{

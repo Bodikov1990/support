@@ -9,18 +9,19 @@ part of 'message_model.dart';
 MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
       topic: json['topic'] as String?,
       android: json['android'] == null
-          ? null
-          : Android.fromJson(json['android'] as Map<String, dynamic>),
+          ? const AndroidEntity()
+          : AndroidEntity.fromJson(json['android'] as Map<String, dynamic>),
       apns: json['apns'] == null
-          ? null
-          : Apns.fromJson(json['apns'] as Map<String, dynamic>),
+          ? const ApnsEntity()
+          : ApnsEntity.fromJson(json['apns'] as Map<String, dynamic>),
       notification: json['notification'] == null
           ? null
-          : NotificationContent.fromJson(
+          : NotificationContentEntity.fromJson(
               json['notification'] as Map<String, dynamic>),
       data: json['data'] == null
           ? null
-          : NotificationData.fromJson(json['data'] as Map<String, dynamic>),
+          : NotificationDataEntity.fromJson(
+              json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MessageModelToJson(MessageModel instance) =>

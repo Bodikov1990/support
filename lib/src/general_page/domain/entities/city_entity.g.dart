@@ -10,7 +10,7 @@ CityEntity _$CityEntityFromJson(Map<String, dynamic> json) => CityEntity(
       id: json['id'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
-      sortOrder: json['sort_order'] as int?,
+      sortOrder: (json['sort_order'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$CityEntityToJson(CityEntity instance) =>

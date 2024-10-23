@@ -16,7 +16,7 @@ import 'package:support/src/push_page/presentation/views/push_sending_page.dart'
 part 'auto_routes.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(

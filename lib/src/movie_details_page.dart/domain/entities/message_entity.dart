@@ -8,17 +8,17 @@ import 'package:support/src/movie_details_page.dart/domain/entities/notification
 part 'message_entity.g.dart';
 
 @JsonSerializable()
-class Message extends Equatable {
+class MessageEntity extends Equatable {
   final String? topic;
-  final Android? android;
-  final Apns? apns;
-  final NotificationContent? notification;
-  final NotificationData? data;
+  final AndroidEntity? android;
+  final ApnsEntity? apns;
+  final NotificationContentEntity? notification;
+  final NotificationDataEntity? data;
 
-  const Message({
+  const MessageEntity({
     this.topic,
-    this.android = const Android(),
-    this.apns = const Apns(),
+    this.android = const AndroidEntity(),
+    this.apns = const ApnsEntity(),
     this.notification,
     this.data,
   });
@@ -26,8 +26,8 @@ class Message extends Equatable {
   @override
   List<Object?> get props => [topic, android, apns, notification, data];
 
-  factory Message.fromJson(Map<String, dynamic> json) =>
-      _$MessageFromJson(json);
+  factory MessageEntity.fromJson(Map<String, dynamic> json) =>
+      _$MessageEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MessageToJson(this);
+  Map<String, dynamic> toJson() => _$MessageEntityToJson(this);
 }

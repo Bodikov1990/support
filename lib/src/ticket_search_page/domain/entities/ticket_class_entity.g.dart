@@ -11,11 +11,11 @@ TicketClassEntity _$TicketClassEntityFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       number: json['number'] as String?,
       qrCode: json['qr_code'] as String?,
-      amount: json['amount'] as int?,
+      amount: (json['amount'] as num?)?.toInt(),
       detail: json['detail'] == null
           ? null
           : DetailEntity.fromJson(json['detail'] as Map<String, dynamic>),
-      status: json['status'] as int?,
+      status: (json['status'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$TicketClassEntityToJson(TicketClassEntity instance) =>

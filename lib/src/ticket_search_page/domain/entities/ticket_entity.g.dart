@@ -8,7 +8,7 @@ part of 'ticket_entity.dart';
 
 TicketEntity _$TicketEntityFromJson(Map<String, dynamic> json) => TicketEntity(
       id: json['id'] as String?,
-      type: json['type'] as int?,
+      type: (json['type'] as num?)?.toInt(),
       number: json['number'] as String?,
       contract: json['contract'] == null
           ? null
@@ -24,8 +24,8 @@ TicketEntity _$TicketEntityFromJson(Map<String, dynamic> json) => TicketEntity(
           ? null
           : TicketPaymentEntity.fromJson(
               json['payment'] as Map<String, dynamic>),
-      status: json['status'] as int?,
-      total: json['total'] as int?,
+      status: (json['status'] as num?)?.toInt(),
+      total: (json['total'] as num?)?.toInt(),
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
     );

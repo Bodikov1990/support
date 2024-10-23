@@ -6,6 +6,6 @@ part of 'aps_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ApsModel _$ApsModelFromJson(Map<String, dynamic> json) => const ApsModel();
+ApsModel _$ApsModelFromJson(Map<String, dynamic> json) => ApsModel();
 
 Map<String, dynamic> _$ApsModelToJson(ApsModel instance) => <String, dynamic>{};

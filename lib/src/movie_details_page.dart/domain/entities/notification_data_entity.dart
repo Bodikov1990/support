@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'notification_data_entity.g.dart';
 
 @JsonSerializable()
-class NotificationData extends Equatable {
+class NotificationDataEntity extends Equatable {
   @JsonKey(name: "content.id")
   final String? contentId;
   @JsonKey(name: "content.channelKey")
@@ -36,7 +36,7 @@ class NotificationData extends Equatable {
   @JsonKey(name: "actionButtons.1.autoDismissible")
   final String? actionButtonAutoDismiss;
 
-  const NotificationData(
+  const NotificationDataEntity(
       {this.contentId,
       this.channelKey,
       this.displayOnForeground = 'true',
@@ -72,8 +72,8 @@ class NotificationData extends Equatable {
         actionButtonAutoDismiss
       ];
 
-  factory NotificationData.fromJson(Map<String, dynamic> json) =>
-      _$NotificationDataFromJson(json);
+  factory NotificationDataEntity.fromJson(Map<String, dynamic> json) =>
+      _$NotificationDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$NotificationDataToJson(this);
+  Map<String, dynamic> toJson() => _$NotificationDataEntityToJson(this);
 }

@@ -8,7 +8,7 @@ import 'package:support/src/movie_details_page.dart/domain/entities/notification
 part 'message_model.g.dart';
 
 @JsonSerializable()
-class MessageModel extends Message {
+class MessageModel extends MessageEntity {
   const MessageModel(
       {required super.topic,
       required super.android,

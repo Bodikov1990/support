@@ -4,16 +4,16 @@ import 'package:json_annotation/json_annotation.dart';
 part 'android_entity.g.dart';
 
 @JsonSerializable()
-class Android extends Equatable {
+class AndroidEntity extends Equatable {
   final String? priority;
 
-  const Android({this.priority = "high"});
+  const AndroidEntity({this.priority = "high"});
 
   @override
   List<Object?> get props => [];
 
-  factory Android.fromJson(Map<String, dynamic> json) =>
-      _$AndroidFromJson(json);
+  factory AndroidEntity.fromJson(Map<String, dynamic> json) =>
+      _$AndroidEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AndroidToJson(this);
+  Map<String, dynamic> toJson() => _$AndroidEntityToJson(this);
 }
